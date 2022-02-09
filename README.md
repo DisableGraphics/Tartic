@@ -3,6 +3,7 @@ A graphical text editor that follows suckless's philosophy.
 
 # Compiling
 ```git clone https://github.com/DisableGraphics/Tartic```
+
 ```cd Tartic && make && sudo make install```
 
 # Dependencies
