@@ -1,6 +1,7 @@
 #include "giomm/application.h"
 #include "glibmm/refptr.h"
 #include "gtkmm/application.h"
+#include "gtkmm/scrolledwindow.h"
 #include "gtkmm/textbuffer.h"
 #include "gtkmm/textview.h"
 #include "gtkmm/window.h"
@@ -60,13 +61,19 @@ int main(int argc, char *argv[])
         window.set_border_width(2);
         Gtk::TextView textView;
 
+        Gtk::ScrolledWindow scrollWindow;
+
+        scrollWindow.set_size_request(400, 300);
+
         Glib::ustring buffer_text{load()};
 
         textView.get_buffer()->set_text(buffer_text);
 
         window.signal_delete_event().connect(sigc::bind<Gtk::TextView&, Glib::RefPtr<Gtk::Application>>(sigc::ptr_fun(&save), textView, app));
 
-        window.add(textView);
+        scrollWindow.add(textView);
+
+        window.add(scrollWindow);
 
         window.show_all();
 
